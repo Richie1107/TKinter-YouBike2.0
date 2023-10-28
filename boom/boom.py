@@ -7,7 +7,7 @@ def _hit1():
     global num1,num2,entrY1,entrY2 ,wiN1
     wiN1=tk.Toplevel(wiN)
     wiN1.title("設定號碼範圍!!")
-    wiN1.geometry("400x300+750+400")
+    wiN1.geometry("400x300+750+300")
     wiN1.configure(bg='red')
     lbL1 = tk.Label(wiN1,text='輸入開始號碼:',fg="black", font=("Arial", 12),\
                     width=15, height=2)
@@ -24,7 +24,7 @@ def _hit1():
                      height=2, command=wiN1.destroy)
     btN1.grid(row=8,column=1) 
     btN2 = tk.Button(wiN1, text="設定!!", font=("Arial", 12),fg='red',\
-                     width=10, height=2, command=_setnum)
+                     width=10, height=2, command=_checkNum)
     btN2.grid(row=6,column=1)
     
 def _hit2():
@@ -76,6 +76,16 @@ def _setnum():
 
 def _delay_time():
     wiN.after(10000,_hit3())
+    
+def _checkNum():
+    global entrY1,entrY2,num1,num2,lastNum,numX,numY
+    try:         
+       num1=int(entrY1.get())
+       num2=int(entrY2.get())
+       _setnum()
+    except:
+        listBox.insert(0,'請輸入數字')
+    
 
 #%% wiN   
 #Create win , Parameter setting
